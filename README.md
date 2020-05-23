@@ -6,6 +6,16 @@ API para registro de usuarios
 
 Para poder correr el proyecto de manera local, es necesario tener instalado [Node.js](https://nodejs.org/es/)
 
-Una vez instalado, clonamos el repositorio, accedemos a la carpeta del proyecto y en una terminal ejecutamos el comando ```npm i``` para instalar los paquetes necesarios.
+```
+git clone https://github.com/tuxdinosaur/toroto-api.git
+cd toroto-api
+npm install
+npm start
+```
 
-Posteriormente, ejecutamos ```node index.js``` o ```npm start``` para levantar la API
+En http://localhost:8080/users estará levantada la API
+
+## Endpoints
+
+- /user/
+- /user/id
