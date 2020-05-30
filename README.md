@@ -17,5 +17,5 @@ En http://localhost:8080/users estará levantada la API
 
 ## Endpoints
 
-- /user/
-- /user/id
+- /users/
+- /users/id
