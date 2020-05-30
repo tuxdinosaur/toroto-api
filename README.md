@@ -6,7 +6,7 @@ API para registro de usuarios
 
 Para poder correr el proyecto de manera local, es necesario tener instalado [Node.js](https://nodejs.org/es/)
 
-```
+```bash
 git clone https://github.com/tuxdinosaur/toroto-api.git
 cd toroto-api
 npm install
