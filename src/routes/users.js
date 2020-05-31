@@ -1,19 +1,25 @@
 
 const express = require('express')
-
 const user = require('../use_cases/user')
+const auth = require('../middleware/auth')
 
 const router = express.Router()
+
+// middleware a nivel del router
+router.use((request, response, next) => {
+  console.log('middleware router users')
+  next()
+})
 
 // GET /users -> getAll()
 router.get('/', async (request, response) => {
   try {
-    const users = await user.getAll()
+    const allUsers = await user.getAll()
     response.json({
       success: true,
       message: 'All users',
       data: {
-        users
+        users: allUsers
       }
     })
   } catch (error) {
@@ -26,7 +32,6 @@ router.get('/', async (request, response) => {
 })
 
 // POST /users -> create()
-
 router.post('/', async (request, response) => {
   try {
     const newUser = await user.create(request.body)
@@ -47,7 +52,6 @@ router.post('/', async (request, response) => {
 })
 
 // GET BY ID /users/:id
-
 router.get('/:id', async (request, response) => {
   try {
     const { id } = request.params
@@ -98,7 +102,6 @@ router.delete('/:id', async (request, response) => {
 router.patch('/:id', async (request, response) => {
   try {
     const { id } = request.params
-
     const userToUpdate = await user.updateById(id, request.body)
 
     response.json({
@@ -113,6 +116,28 @@ router.patch('/:id', async (request, response) => {
     response.json({
       success: false,
       message: error.message
+    })
+  }
+})
+
+// POST SIGNUP -> REGISTRO DE USUARIO
+// POST SIGNIN -> LOGIN DE USUARIO
+
+router.post('/signup', async (request, response) => {
+  try {
+    const newUser = await user.signup(request.body)
+    response.json({
+      success: true,
+      message: 'User registered',
+      data: {
+        user: newUser
+      }
+    })
+  } catch (error) {
+    response.status(400)
+    response.json({
+      success: false,
+      error: error.message
     })
   }
 })
