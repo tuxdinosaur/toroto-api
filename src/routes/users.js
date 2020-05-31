@@ -12,7 +12,7 @@ router.use((request, response, next) => {
 })
 
 // GET /users -> getAll()
-router.get('/', async (request, response) => {
+router.get('/', auth, async (request, response) => {
   try {
     const allUsers = await user.getAll()
     response.json({

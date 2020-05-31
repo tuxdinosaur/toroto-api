@@ -37,20 +37,37 @@ async function signup (newUserData) {
   if (!email) throw new Error('Email is requeried')
   if (!password) throw new Error('Password is requeried')
 
+  console.log(newUserData)
+
   const userAlreadyExists = await User.findOne({ email })
+
+  console.log('userAlreadyExists: ', userAlreadyExists)
 
   if (userAlreadyExists) throw new Error('This email is already taken')
   if (password.length < 8) throw new Error('Password must be 8 characters minimum')
 
   const hash = await bcrypt.hash(password, 10)
+  console.log('hash: ', hash)
 
-  return User.create({ ...newUserData, password: hash })
+  const {
+    name,
+    lastName,
+    role,
+    suscription
+  } = newUserData
+
+  // return User.create({ name, lastName, role, password: hash })
+  const dataUser = { name, lastName, email, role, suscription, password: hash }
+  console.log('dataUser: ', dataUser)
+  return User.create(dataUser)
 }
 
 async function login (email, password) {
   console.log('usecase')
+  console.log(email, password)
 
   const userFound = await User.findOne({ email })
+  console.log(userFound)
   if (!userFound) throw new Error('Unauthorized')
 
   // console.log('Will compare: ', password, userFound.password)

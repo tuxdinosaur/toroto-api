@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 const secret = 'dark_cat'
 
 function sign (payload = {}) {
-  return jwt.sign(payload, secret, { expiresIn: '2d' })
+  return jwt.sign(payload, secret, { expiresIn: '1d' })
 }
 
 function verify (token) {
