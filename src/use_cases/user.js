@@ -76,7 +76,17 @@ async function login (email, password) {
   // console.log('isPasswordCorrect: ', isPasswordCorrect)
   if (!isPasswordCorrect) throw new Error('Unauthorized')
 
-  return jwt.sign({ id: userFound._id })
+  // PAYLOAD PREVIEW
+
+  const payload = {
+    id: userFound._id,
+    role: userFound.role
+  }
+
+  // PAYLOAD PREVIEW
+
+  // return jwt.sign({ id: userFound._id })
+  return jwt.sign(payload)
 }
 
 module.exports = {

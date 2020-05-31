@@ -8,9 +8,14 @@ function auth (request, response, next) {
     console.log('Auth middleware')
     const { authorization: token } = request.headers
     console.log('token: ', token)
+
     const decodedToken = jwt.verify(token)
     console.log('decodedToken: ', decodedToken)
+
     if (!decodedToken) throw new Error('Invalid token')
+    // if (!decodedToken.role) throw new Error('Role undefined')
+    console.log('Role: ', decodedToken.role)
+    if (decodedToken.role !== 'Admin') throw new Error('You are not an administrator')
     next()
   } catch (error) {
     response.status(401)
