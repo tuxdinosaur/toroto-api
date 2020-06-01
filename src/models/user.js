@@ -23,8 +23,14 @@ const usersSchema = new mongoose.Schema({
     type: String,
     required: true,
     minlength: 5,
-    maxlength: 100,
-    toLowerCase: true
+    maxlength: 64,
+    toLowerCase: true,
+    match: /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/
+  },
+  password: {
+    type: String,
+    required: true,
+    minlength: 8
   },
   role: {
     type: String,

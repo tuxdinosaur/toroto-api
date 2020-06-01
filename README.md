@@ -17,5 +17,16 @@ En http://localhost:8080/users estará levantada la API
 
 ## Endpoints
 
+### GET
+
 - /users/
-- /users/id
+- /users/{id}
+
+### POST
+
+- /users/signup
+- /auth/login
+
+### DELETE / PATCH
+
+- /users/{id}
